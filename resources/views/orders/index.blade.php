@@ -49,7 +49,7 @@
     {{-- 新規登録ボタン --}}
     <div class="flex justify-end mb-4">
         <a href="{{ route('orders.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            注文を新規登録
+            {{ __('注文を新規登録') }}
         </a>
     </div>
 
