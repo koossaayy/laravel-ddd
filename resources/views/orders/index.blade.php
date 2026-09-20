@@ -46,6 +46,13 @@
         </div>
     </div>
 
+    {{-- 新規登録ボタン --}}
+    <div class="flex justify-end mb-4">
+        <a href="{{ route('orders.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            注文を新規登録
+        </a>
+    </div>
+
     {{-- 検索フォーム --}}
     <form method="GET" action="{{ route('orders.index') }}" class="bg-white p-6 rounded-lg shadow-md mb-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">

@@ -24,6 +24,32 @@ use DateTimeImmutable;
 class OrderRepository implements OrderRepositoryInterface
 {
     /**
+     * 注文日をもとに次の注文IDを採番
+     *
+     * 同じ注文日の注文IDのうち、最大の連番に1を加えた注文IDを返す。
+     * 連番の重複を避けるため、トランザクション内で呼び出すことを想定している。
+     *
+     * @param DateTimeImmutable $orderedAt
+     * @return OrderId
+     */
+    public function nextOrderId(DateTimeImmutable $orderedAt): OrderId
+    {
+        $prefix = sprintf('Order-%s-', $orderedAt->format('Ymd'));
+
+        $latestOrderId = OrderModel::query()
+            ->where('order_id', 'like', $prefix . '%')
+            ->orderBy('order_id', 'desc')
+            ->lockForUpdate()
+            ->value('order_id');
+
+        $sequence = $latestOrderId === null
+            ? 1
+            : ((int) substr($latestOrderId, strlen($prefix))) + 1;
+
+        return new OrderId($prefix . str_pad((string) $sequence, 3, '0', STR_PAD_LEFT));
+    }
+
+    /**
      * 注文を保存
      *
      * @param Order $order

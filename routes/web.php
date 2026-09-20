@@ -13,6 +13,9 @@ Route::get('/', function () {
 // });
 
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+// 新規登録のルートは /orders/{orderId} より先に定義する
+Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/orders/{orderId}/receipt', [OrderController::class, 'showReceipt'])->name('orders.receipt');
 Route::post('/orders/{orderId}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 Route::get('/orders/{orderId}', [OrderController::class, 'showDetail'])->name('orders.detail');
