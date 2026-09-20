@@ -16,3 +16,10 @@ Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/{orderId}/receipt', [OrderController::class, 'showReceipt'])->name('orders.receipt');
 Route::post('/orders/{orderId}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
 Route::get('/orders/{orderId}', [OrderController::class, 'showDetail'])->name('orders.detail');
+
+Route::get('/locale/{locale}', function (string $locale) {
+    abort_unless(in_array($locale, config('app.available_locales', ['en', 'ja'])), 404);
+    session(['locale' => $locale]);
+
+    return back();
+})->name('locale.switch');
