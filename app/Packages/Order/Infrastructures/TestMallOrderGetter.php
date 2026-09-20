@@ -248,7 +248,7 @@ class TestMallOrderGetter implements OrderGetterInterface
 
         $firstName = $firstNames[array_rand($firstNames)];
         $lastName = $lastNames[array_rand($lastNames)];
-        $name = '仮' . $lastName . ' ' . $firstName;
+        $name = __('仮:lastName :firstName', ['lastName' => $lastName, 'firstName' => $firstName]);
 
         return new OrderCustomerInfo(
             $name,

@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">受注管理システム（テスト）</x-slot>
+    <x-slot name="title">{{ __('受注管理システム（テスト）') }}</x-slot>
 
     {{-- メインコンテンツ --}}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -14,10 +14,10 @@
                     </div>
                     <div class="ml-4">
                         <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                            注文一覧
+                            {{ __('注文一覧') }}
                         </h2>
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                            注文の一覧を表示し、詳細確認や状態管理を行います
+                            {{ __('注文の一覧を表示し、詳細確認や状態管理を行います') }}
                         </p>
                     </div>
                 </div>
