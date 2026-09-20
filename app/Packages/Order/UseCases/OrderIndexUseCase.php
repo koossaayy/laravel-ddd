@@ -30,9 +30,9 @@ class OrderIndexUseCase
 
         // ステータス一覧
         $statuses = [
-            'pending' => '保留中',
-            'canceled' => 'キャンセル',
-            'unshipped' => '未発送',
+            'pending' => __('保留中'),
+            'canceled' => __('キャンセル'),
+            'unshipped' => __('未発送'),
         ];
 
         return new OrderIndexResponseDto(

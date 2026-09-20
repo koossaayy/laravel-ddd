@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="title">注文一覧</x-slot>
-    <x-slot name="header">注文一覧</x-slot>
-    <x-slot name="notification">表示されている注文データはすべてテスト用の架空のデータです。</x-slot>
+    <x-slot name="title">{{ __('注文一覧') }}</x-slot>
+    <x-slot name="header">{{ __('注文一覧') }}</x-slot>
+    <x-slot name="notification">{{ __('表示されている注文データはすべてテスト用の架空のデータです。') }}</x-slot>
 
     @push('styles')
     <style>
@@ -50,9 +50,9 @@
     <form method="GET" action="{{ route('orders.index') }}" class="bg-white p-6 rounded-lg shadow-md mb-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div>
-                <label for="status" class="block text-sm font-medium text-gray-700">ステータス</label>
+                <label for="status" class="block text-sm font-medium text-gray-700">{{ __('ステータス') }}</label>
                 <select name="status" id="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                    <option value="">すべて</option>
+                    <option value="">{{ __('すべて') }}</option>
                     @foreach($statuses as $value => $label)
                         <option value="{{ $value }}" {{ request('status') == $value ? 'selected' : '' }}>
                             {{ $label }}
@@ -61,23 +61,23 @@
                 </select>
             </div>
             <div>
-                <label for="ordered_from" class="block text-sm font-medium text-gray-700">開始日</label>
+                <label for="ordered_from" class="block text-sm font-medium text-gray-700">{{ __('開始日') }}</label>
                 <input type="date" name="ordered_from" id="ordered_from" 
                        value="{{ request('ordered_from') }}"
                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
             <div>
-                <label for="ordered_to" class="block text-sm font-medium text-gray-700">終了日</label>
+                <label for="ordered_to" class="block text-sm font-medium text-gray-700">{{ __('終了日') }}</label>
                 <input type="date" name="ordered_to" id="ordered_to" 
                        value="{{ request('ordered_to') }}"
                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
             <div class="flex items-end">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    検索
+                    {{ __('検索') }}
                 </button>
                 <a href="{{ route('orders.index') }}" class="ml-2 text-blue-500 hover:text-blue-700">
-                    クリア
+                    {{ __('クリア') }}
                 </a>
             </div>
         </div>
@@ -88,12 +88,12 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">注文番号</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ステータス</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">お客様名</th>
-                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">合計金額</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">注文日時</th>
-                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('注文番号') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('ステータス') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('お客様名') }}</th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('合計金額') }}</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('注文日時') }}</th>
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('操作') }}</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -126,7 +126,7 @@
                             <a href="{{ route('orders.detail', $order->order_id) }}" 
                                 class="text-blue-600 hover:text-blue-900"
                                 target="_blank">
-                                 詳細
+                                 {{ __('詳細') }}
                             </a>
 
                             {{-- 領収書リンク --}}
@@ -134,18 +134,18 @@
                             <a href="{{ route('orders.receipt', $order->order_id) }}" 
                                class="text-blue-600 hover:text-blue-900"
                                target="_blank">
-                                領収書
+                                {{ __('領収書') }}
                             </a>
                             @else
-                            <span class="text-gray-400 cursor-not-allowed" title="未発送の注文の領収書は表示できません">
-                                領収書
+                            <span class="text-gray-400 cursor-not-allowed" title="{{ __('未発送の注文の領収書は表示できません') }}">
+                                {{ __('領収書') }}
                             </span>
                             @endif
 
                             {{-- キャンセルボタン（未発送の場合のみ表示） --}}
                             @if ($order->status === 'unshipped')
                                 <button type="button" class="text-red-600 hover:text-red-900 cancel-order" onclick="openCancelModal('{{ $order['order_id'] }}')">
-                                    キャンセル
+                                    {{ __('キャンセル') }}
                                 </button>
                             @endif
                         </td>
@@ -175,33 +175,33 @@
     {{-- キャンセルモーダル --}}
     <div id="cancelModal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center hidden z-50">
         <div class="bg-white rounded-lg p-6 max-w-md w-full">
-            <h3 class="text-lg font-medium text-gray-900 mb-4">注文キャンセル</h3>
-            <p class="mb-4 text-sm text-gray-600">この注文をキャンセルしますか？この操作は取り消せません。</p>
+            <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('注文キャンセル') }}</h3>
+            <p class="mb-4 text-sm text-gray-600">{{ __('この注文をキャンセルしますか？この操作は取り消せません。') }}</p>
             
             <form id="cancelForm" method="POST" action="">
                 @csrf
                 @method('POST')
                 <div class="mb-4">
-                    <label for="cancel_reason" class="block text-sm font-medium text-gray-700 mb-2">キャンセル理由</label>
+                    <label for="cancel_reason" class="block text-sm font-medium text-gray-700 mb-2">{{ __('キャンセル理由') }}</label>
                     <select id="cancel_reason" name="cancel_reason" class="w-full rounded-md border-gray-300 shadow-sm" required>
-                        <option value="">選択してください</option>
-                        <option value="customer_request">お客様のご都合</option>
-                        <option value="out_of_stock">在庫切れ</option>
-                        <option value="duplicate_order">重複注文</option>
-                        <option value="system_error">システムエラー</option>
-                        <option value="other">その他</option>
+                        <option value="">{{ __('選択してください') }}</option>
+                        <option value="customer_request">{{ __('お客様のご都合') }}</option>
+                        <option value="out_of_stock">{{ __('在庫切れ') }}</option>
+                        <option value="duplicate_order">{{ __('重複注文') }}</option>
+                        <option value="system_error">{{ __('システムエラー') }}</option>
+                        <option value="other">{{ __('その他') }}</option>
                     </select>
                 </div>
                 <div class="mb-4 hidden" id="otherReasonContainer">
-                    <label for="other_reason" class="block text-sm font-medium text-gray-700 mb-2">その他の理由</label>
+                    <label for="other_reason" class="block text-sm font-medium text-gray-700 mb-2">{{ __('その他の理由') }}</label>
                     <textarea id="other_reason" name="other_reason" rows="3" class="w-full rounded-md border-gray-300 shadow-sm"></textarea>
                 </div>
                 <div class="flex justify-end space-x-3">
                     <button type="button" onclick="closeCancelModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-                        キャンセル
+                        {{ __('キャンセル') }}
                     </button>
                     <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        注文をキャンセルする
+                        {{ __('注文をキャンセルする') }}
                     </button>
                 </div>
             </form>
