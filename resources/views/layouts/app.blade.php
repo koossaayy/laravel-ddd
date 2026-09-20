@@ -20,7 +20,7 @@
                     @if(isset($header))
                         {{ $header }}
                     @else
-                        受注管理システム（テスト）
+                        {{ __('受注管理システム（テスト）') }}
                     @endif
                 </h1>
             </div>
@@ -56,7 +56,7 @@
         <footer class="bg-white dark:bg-gray-800 shadow">
             <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                 <p class="text-center text-sm text-gray-500 dark:text-gray-400">
-                    &copy; {{ date('Y') }} XXXXX System System All rights reserved.
+                    &copy; {{ __(':param_1 XXXXX System System All rights reserved.', ['param_1' => date('Y')]) }}
                 </p>
             </div>
         </footer>

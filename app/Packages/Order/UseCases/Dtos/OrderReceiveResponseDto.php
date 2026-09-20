@@ -69,7 +69,7 @@ class OrderReceiveResponseDto
     public function getSummary(): string
     {
         return sprintf(
-            "処理結果: 合計 %d件 (成功: %d件, 失敗: %d件)",
+            __("処理結果: 合計 %d件 (成功: %d件, 失敗: %d件)"),
             $this->processedCount,
             $this->successCount,
             $this->errorCount

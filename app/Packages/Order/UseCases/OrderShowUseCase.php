@@ -35,11 +35,11 @@ class OrderShowUseCase
 
         // ステータス一覧
         $statuses = [
-            'pending' => '保留中',
-            'failed' => '失敗',
-            'unshipped' => '決済待ち',
-            'shipped' => '発送済み',
-            'canceled' => 'キャンセル',
+            'pending' => __('保留中'),
+            'failed' => __('失敗'),
+            'unshipped' => __('決済待ち'),
+            'shipped' => __('発送済み'),
+            'canceled' => __('キャンセル'),
         ];
 
         // エンティティから注文データを配列に変換
