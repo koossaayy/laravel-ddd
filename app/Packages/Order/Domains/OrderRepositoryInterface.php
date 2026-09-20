@@ -5,6 +5,7 @@ namespace App\Packages\Order\Domains;
 use App\Packages\Order\Domains\Entities\Order;
 use App\Packages\Order\Domains\Entities\Orders;
 use App\Packages\Order\Domains\ValueObjects\OrderId;
+use DateTimeImmutable;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface OrderRepositoryInterface
@@ -32,6 +33,14 @@ interface OrderRepositoryInterface
      * @return LengthAwarePaginator
      */
     public function searchOrders(array $searchParams, int $perPage): LengthAwarePaginator;
+
+    /**
+     * 注文日をもとに次の注文IDを採番
+     *
+     * @param DateTimeImmutable $orderedAt
+     * @return OrderId
+     */
+    public function nextOrderId(DateTimeImmutable $orderedAt): OrderId;
 
     /**
      * 注文を保存
