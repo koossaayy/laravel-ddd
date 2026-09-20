@@ -197,5 +197,16 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'customer_address' => 'Customer address',
+        'customer_email' => 'Customer email',
+        'customer_name' => 'Customer name',
+        'customer_phone' => 'Customer phone',
+        'ec_site_code' => 'E-commerce site code',
+        'items' => 'Items',
+        'ordered_at' => 'Ordered at',
+        'shipping_fee' => 'Shipping fee',
+        'shipping_fee_tax_rate' => 'Shipping fee tax rate',
+        'status' => 'Status',
+    ],
 ];

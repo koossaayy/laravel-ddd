@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-slot name="title">注文の新規登録</x-slot>
-    <x-slot name="header">注文の新規登録</x-slot>
-    <x-slot name="notification">ここで登録した注文は、テスト用の架空のデータとして扱われます。</x-slot>
+    <x-slot name="title">{{ __('注文の新規登録') }}</x-slot>
+    <x-slot name="header">{{ __('注文の新規登録') }}</x-slot>
+    <x-slot name="notification">{{ __('ここで登録した注文は、テスト用の架空のデータとして扱われます。') }}</x-slot>
 
     @php
         // 入力エラーで戻ってきた場合は入力済みの商品行を、初回表示の場合は空の1行を表示する
@@ -18,7 +18,7 @@
     {{-- バリデーションエラーの一覧 --}}
     @if($errors->any())
         <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
-            <p class="text-sm font-bold text-red-700">入力内容に誤りがあります。以下をご確認ください。</p>
+            <p class="text-sm font-bold text-red-700">{{ __('入力内容に誤りがあります。以下をご確認ください。') }}</p>
             <ul class="mt-2 list-disc list-inside text-sm text-red-700">
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -32,12 +32,12 @@
 
         {{-- 注文情報 --}}
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-lg font-bold text-gray-900 mb-4">注文情報</h2>
+            <h2 class="text-lg font-bold text-gray-900 mb-4">{{ __('注文情報') }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                    <label for="ec_site_code" class="block text-sm font-medium text-gray-700">ECサイト<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="ec_site_code" class="block text-sm font-medium text-gray-700">{{ __('ECサイト') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <select name="ec_site_code" id="ec_site_code" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        <option value="">選択してください</option>
+                        <option value="">{{ __('選択してください') }}</option>
                         @foreach($ecSites as $code => $name)
                             <option value="{{ $code }}" {{ old('ec_site_code', $selectedEcSiteCode) === $code ? 'selected' : '' }}>
                                 {{ $name }}（{{ $code }}）
@@ -49,7 +49,7 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="status" class="block text-sm font-medium text-gray-700">ステータス<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="status" class="block text-sm font-medium text-gray-700">{{ __('ステータス') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <select name="status" id="status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                         @foreach($statuses as $value => $label)
                             <option value="{{ $value }}" {{ old('status', 'unshipped') === $value ? 'selected' : '' }}>
@@ -62,7 +62,7 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="ordered_at" class="block text-sm font-medium text-gray-700">注文日時<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="ordered_at" class="block text-sm font-medium text-gray-700">{{ __('注文日時') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <input type="datetime-local" name="ordered_at" id="ordered_at"
                            value="{{ old('ordered_at', now()->format('Y-m-d\TH:i')) }}"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
@@ -75,19 +75,19 @@
 
         {{-- お客様情報 --}}
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-lg font-bold text-gray-900 mb-4">お客様情報</h2>
+            <h2 class="text-lg font-bold text-gray-900 mb-4">{{ __('お客様情報') }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label for="customer_name" class="block text-sm font-medium text-gray-700">お客様名<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="customer_name" class="block text-sm font-medium text-gray-700">{{ __('お客様名') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <input type="text" name="customer_name" id="customer_name" value="{{ old('customer_name') }}"
-                           placeholder="仮山田太郎"
+                           placeholder="{{ __('仮山田太郎') }}"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     @error('customer_name')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
                 <div>
-                    <label for="customer_email" class="block text-sm font-medium text-gray-700">メールアドレス<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="customer_email" class="block text-sm font-medium text-gray-700">{{ __('メールアドレス') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <input type="email" name="customer_email" id="customer_email" value="{{ old('customer_email') }}"
                            placeholder="yamada.taro@example.com"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
@@ -96,7 +96,7 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="customer_phone" class="block text-sm font-medium text-gray-700">電話番号<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="customer_phone" class="block text-sm font-medium text-gray-700">{{ __('電話番号') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <input type="text" name="customer_phone" id="customer_phone" value="{{ old('customer_phone') }}"
                            placeholder="090-1234-5678"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
@@ -105,9 +105,9 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="customer_address" class="block text-sm font-medium text-gray-700">住所<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="customer_address" class="block text-sm font-medium text-gray-700">{{ __('住所') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <input type="text" name="customer_address" id="customer_address" value="{{ old('customer_address') }}"
-                           placeholder="東京都仮新宿区西新宿1-1-1"
+                           placeholder="{{ __('東京都仮新宿区西新宿1-1-1') }}"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     @error('customer_address')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -119,9 +119,9 @@
         {{-- 注文商品 --}}
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
             <div class="flex items-center justify-between mb-4">
-                <h2 class="text-lg font-bold text-gray-900">注文商品</h2>
+                <h2 class="text-lg font-bold text-gray-900">{{ __('注文商品') }}</h2>
                 <button type="button" id="addItemButton" class="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded">
-                    商品を追加
+                    {{ __('商品を追加') }}
                 </button>
             </div>
 
@@ -133,12 +133,12 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">商品名</th>
-                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">単価（税抜）</th>
-                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">税率</th>
-                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">数量</th>
-                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">小計（税込）</th>
-                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('商品名') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('単価（税抜）') }}</th>
+                            <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('税率') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('数量') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('小計（税込）') }}</th>
+                            <th class="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">{{ __('操作') }}</th>
                         </tr>
                     </thead>
                     <tbody id="itemRows" class="bg-white divide-y divide-gray-200">
@@ -146,7 +146,7 @@
                             <tr class="item-row align-top">
                                 <td class="px-4 py-3">
                                     <input type="text" name="items[{{ $index }}][name]" value="{{ $item['name'] ?? '' }}"
-                                           placeholder="プロテイン 1kg"
+                                           placeholder="{{ __('プロテイン 1kg') }}"
                                            class="block w-full rounded-md border-gray-300 shadow-sm item-name">
                                     @error('items.' . $index . '.name')
                                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -182,22 +182,22 @@
                                 </td>
                                 <td class="px-4 py-3 text-right text-sm text-gray-900 item-subtotal">¥0</td>
                                 <td class="px-4 py-3 text-right">
-                                    <button type="button" class="text-red-600 hover:text-red-900 text-sm remove-item">削除</button>
+                                    <button type="button" class="text-red-600 hover:text-red-900 text-sm remove-item">{{ __('削除') }}</button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <p class="mt-2 text-sm text-gray-500">商品は最大20件まで登録できます。</p>
+            <p class="mt-2 text-sm text-gray-500">{{ __('商品は最大20件まで登録できます。') }}</p>
         </div>
 
         {{-- 送料と合計 --}}
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-lg font-bold text-gray-900 mb-4">送料</h2>
+            <h2 class="text-lg font-bold text-gray-900 mb-4">{{ __('送料') }}</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                    <label for="shipping_fee" class="block text-sm font-medium text-gray-700">送料（税抜）<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="shipping_fee" class="block text-sm font-medium text-gray-700">{{ __('送料（税抜）') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <input type="number" name="shipping_fee" id="shipping_fee" value="{{ old('shipping_fee', 0) }}"
                            min="0" step="1"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm text-right">
@@ -206,7 +206,7 @@
                     @enderror
                 </div>
                 <div>
-                    <label for="shipping_fee_tax_rate" class="block text-sm font-medium text-gray-700">送料の税率<span class="text-red-600 ml-1">必須</span></label>
+                    <label for="shipping_fee_tax_rate" class="block text-sm font-medium text-gray-700">{{ __('送料の税率') }}<span class="text-red-600 ml-1">{{ __('必須') }}</span></label>
                     <select name="shipping_fee_tax_rate" id="shipping_fee_tax_rate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                         @foreach($taxRates as $value => $label)
                             <option value="{{ $value }}" {{ (string)old('shipping_fee_tax_rate', '0.10') === (string)$value ? 'selected' : '' }}>
@@ -220,21 +220,21 @@
                 </div>
                 <div class="flex items-end justify-end">
                     <p class="text-sm text-gray-500">
-                        注文合計（税込）：
+                        {{ __('注文合計（税込）：') }}
                         <span id="totalAmount" class="ml-2 text-xl font-bold text-gray-900">¥0</span>
                     </p>
                 </div>
             </div>
-            <p class="mt-2 text-sm text-gray-500">※ 画面に表示している合計金額は入力内容からの概算です。確定金額は登録後の注文詳細でご確認ください。</p>
+            <p class="mt-2 text-sm text-gray-500">{{ __('※ 画面に表示している合計金額は入力内容からの概算です。確定金額は登録後の注文詳細でご確認ください。') }}</p>
         </div>
 
         {{-- 操作ボタン --}}
         <div class="flex justify-end space-x-3">
             <a href="{{ route('orders.index') }}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
-                一覧に戻る
+                {{ __('一覧に戻る') }}
             </a>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                この内容で登録する
+                {{ __('この内容で登録する') }}
             </button>
         </div>
     </form>
